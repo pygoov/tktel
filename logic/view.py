@@ -13,16 +13,17 @@ class View:
     Класс отвечающий за визуализацию и поведение визуальных компонентов
     """
     def __init__(self, send_message_callback):
+        self.send_message_callback = send_message_callback
+
         self.window = tk.Tk()
 
-        self.messages = tk.ScrolledText(self.window)
+        self.messages = tk.Text(self.window)
         self.messages.pack()
 
         self.input_user = tk.StringVar()
         self.input_field = tk.Entry(self.window, text=self.input_user)
         self.input_field.pack(side=tk.BOTTOM, fill=tk.X)
         self.input_field.bind("<Return>", self._enter_pressed)
-        self.send_message_callback = send_message_callback
 
     def _enter_pressed(self, event):
         """
