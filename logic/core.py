@@ -26,9 +26,11 @@ class Core:
         """
         Функция колбэк в которую приходят все сообщения из телеграмм
         """
+        print("client_message_handler")
         if event.from_id != self.current_user_id:
+            print("failed event user")
             return
-
+        text = event.message.message
         text = self.cryptor.decode(text)
         print("client text:", text)
         self.view.add_message(text, False)
